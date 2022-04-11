@@ -3,6 +3,7 @@ from config import config
 from flask_moment import Moment
 from flask_bootstrap import Bootstrap
 from flask import Flask
+import matplotlib
 import sys
 sys.path.insert(0, '/home/ado/Desktop/new_datacranchers/data_crunchers_knbs/')
 
