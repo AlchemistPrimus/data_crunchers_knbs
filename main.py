@@ -1,7 +1,6 @@
 # Importing the pandas library
 import pandas as pd
 import numpy as np
-import math
 
 #########################
 # CORE HEALTHWORKFORCE #
