@@ -10,4 +10,5 @@ textpattern/
 HISTORY.txt
 README.txt
 app/data_processing/open_source_data_values
-**/__pycache__/
+__pycache__/
+*.pyc
