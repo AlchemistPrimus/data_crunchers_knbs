@@ -1,1 +1,2 @@
 # data_crunchers_knbs
+Given state data, this web app visualizes distribution of health resources in a state, that can be used to oversee distribution for proper distribution of such health resources, and deceases.
