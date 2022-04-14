@@ -8,7 +8,7 @@ import pandas as pd
 import geopandas as gpd
 
 
-#files=["ML_tests/2018_2019_health_staff_per_10000.csv","ML_tests/2019_County_Population.csv","ML_tests/IRIS.csv"]
+files=["ML_tests/2018_2019_health_staff_per_10000.csv","ML_tests/2019_County_Population.csv","ML_tests/IRIS.csv"]
     
 #opening the datasets
 def load_data(file_name=None):
@@ -17,7 +17,7 @@ def load_data(file_name=None):
         df=pd.read_csv(file_name)
         return df
     except Exception as e:
-        raise "File open failed due to {} error".format(e)
+        return "File open failed due to {} error".format(e)
     
 #Identifying missing values
 #Identifying missing values
@@ -39,7 +39,7 @@ def missing_values(file):
             return False
     except Exception as e:
         #Shows the error captured
-        print("{}".format(e))
+        return "{}".format(e)
     
 
 
@@ -60,22 +60,40 @@ def missing_values_operation(files):
                 
 
 #Grouping data
-def group_by(column_):
-    """Return data grouped by column specified as the parameter"""
-    pass
+def group_by(file_=None,column_=None):
+    """Return data of the file grouped by column specified as the parameter"""
+    data=load_data(file_)
+    return data.groupby(column_)
+    
+
 
 #Working with shape file hence dropping the longitudes and latitudes if present since shape file already contains the polygons
-def polygons(lat,long):
-    """Drop polygons if necessary since they are already present in shape file. Add necessary polygons"""
-    pass
-
+def polygons(cords):
+    """Drop polygons if necessary since they are already present in shape file. Add necessary polygons, return a pair of polygons that represents the co-ordinates. Takes a list of two items and returns list object of the two"""
+    try:
+        if isinstance(cords,list) and len(cords)==2:
+            for i in cords:
+                if not (isinstance(i,int) or isinstance(i,float)):
+                    return "All values must be integer or float"
+            return [cords[0],cords[1]]
+        else:
+            return "Please enter a list containing two numbers(int or float)"
+    except Exception as e:
+        return "{} ocurred".format(e)
 #Transpose table to plot
-def plot_transpose(data_):
-    """Create a transpose of the dataframe"""
+def data_transpose(data_):
+    """Create a transpose of the dataframe."""
     #Each column corresponds to each county
-    pass
+    data=load_data(data_)
+    return data.T
 
 #Reading kenya map shape file with geopandas library
 def read_map(shape_f):
-    """Returns geo data frame that will be used to generate plots"""
-    pass
+    """Takes shape file as a parameter and returns geo data frame that will be used to generate the plots an error is raised if file fails to open"""
+    try:
+        kenya_gdf=gpd.read_file(shape_f)
+        return kenya_gdf
+    except Exception as e:
+        return "Failed to open geo dataframe due to{}.".format(e)
+    
+    
