@@ -48,7 +48,10 @@ def generate_map(pandas_data,geopandas_shape,column_n,name_,column_lst,cordinate
     cordinates_lst: list of the coordinates(must be two items)
     fields_ and aliases_ are entered as per folium.features.GeojsonTooltip
     lgnd_name: takes the legend name
-    fill_clr: takes the color of the fill, can be list but set to RdYIGn by default."""
+    fill_clr: takes the color of the fill, can be list but set to RdYIGn by default.
+    
+    return value
+    Html file of the map to be visualized on the webpage by the webapp"""
     if not (isinstance(column_lst,list) and isinstance(coordinates,list) and isinstance(fields_,list) and isinstance(aliases_,list)):
         return "column_lst,fields_,aliases_, cordinates(list that must contain only two items of int or float types), i.e arguments 4th, 5th, 6th and 7th should be lists"
     
