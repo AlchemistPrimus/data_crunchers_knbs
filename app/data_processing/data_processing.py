@@ -8,7 +8,7 @@ import pandas as pd
 import geopandas as gpd
 
 
-files=["ML_tests/2018_2019_health_staff_per_10000.csv","ML_tests/2019_County_Population.csv","ML_tests/IRIS.csv"]
+#files=["ML_tests/2018_2019_health_staff_per_10000.csv","ML_tests/2019_County_Population.csv","ML_tests/IRIS.csv"]
     
 #opening the datasets
 def load_data(file_name=None):
@@ -95,5 +95,4 @@ def read_map(shape_f):
         return kenya_gdf
     except Exception as e:
         return "Failed to open geo dataframe due to{}.".format(e)
-    
     
