@@ -96,3 +96,17 @@ def read_map(shape_f):
     except Exception as e:
         return "Failed to open geo dataframe due to{}.".format(e)
     
+import os
+
+dir=os.path.dirname("/home/ado/Desktop/new_datacranchers/data_crunchers_knbs/app/data_processing/open_source_data_values/")
+
+csv_files=['2009_County_Population.csv','2013_health_staff_per_10000.csv','2018_2019_health_staff_per_10000.csv','2019_County_Population.csv','list_of_community_health_units.csv','list_of_hospitals_and_number_of_beds.csv','list_of_pharmacies.csv','number_of_hospital_beds.csv']
+
+def file_finder(dir,csv_files):
+    for i in csv_files:
+        loc=os.path.join(dir,i)
+        d=load_data(loc)
+        return d.head(5)
+
+#print(file_finder(dir,csv_files))
+
