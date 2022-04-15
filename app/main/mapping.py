@@ -31,7 +31,7 @@ print(coordinates()[0])
 def join_pandas_geopandas(pandas_,geopandas_shape,on_=None,how_='right'):
     """Here we will link geopandas geodataframe with pandas data. 
     
-    Specify pandas data, geopandas data, column and how to join i.e side(left or right(default value)) to join the two datasets as parameter. Returns geojson dataframe"""
+    Specify pandas data, geopandas data, column and how to join i.e side(left or right(default value)) to join the two datasets as parameter. Returns geopandas dataframe"""
     kenya_gdf=read_map(geopandas_shape)
     kenya_pd=pd.DataFrame(kenya_gdf)
     pandas_=load_data(pandas_)

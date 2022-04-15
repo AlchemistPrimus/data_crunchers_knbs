@@ -23,7 +23,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_57caf82f30fa4395a3d529d9bccb136b {
+                #map_6db23db70a05494aa0603616c4986732 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -35,13 +35,13 @@
 </head>
 <body>    
     
-            <div class="folium-map" id="map_57caf82f30fa4395a3d529d9bccb136b" ></div>
+            <div class="folium-map" id="map_6db23db70a05494aa0603616c4986732" ></div>
         
 </body>
 <script>    
     
-            var map_57caf82f30fa4395a3d529d9bccb136b = L.map(
-                "map_57caf82f30fa4395a3d529d9bccb136b",
+            var map_6db23db70a05494aa0603616c4986732 = L.map(
+                "map_6db23db70a05494aa0603616c4986732",
                 {
                     center: [0.0236, 37.9062],
                     crs: L.CRS.EPSG3857,
@@ -55,9 +55,9 @@
 
         
     
-            var tile_layer_2c686cf1246d436ab59431a7aec9a3c0 = L.tileLayer(
+            var tile_layer_4932c3daefb24e70984ba98cb7a14919 = L.tileLayer(
                 "https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
                 {"attribution": "Map tiles by \u003ca href=\"http://stamen.com\"\u003eStamen Design\u003c/a\u003e, under \u003ca href=\"http://creativecommons.org/licenses/by/3.0\"\u003eCC BY 3.0\u003c/a\u003e. Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://creativecommons.org/licenses/by-sa/3.0\"\u003eCC BY SA\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_57caf82f30fa4395a3d529d9bccb136b);
+            ).addTo(map_6db23db70a05494aa0603616c4986732);
         
 </script>

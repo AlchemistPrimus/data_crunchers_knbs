@@ -11,3 +11,9 @@ body {
 .main-body {
     display: flex;
 }
+
+.contacts-icon {
+    height: 5rem;
+    width: 5rem;
+    padding: 1.2rem;
+}
