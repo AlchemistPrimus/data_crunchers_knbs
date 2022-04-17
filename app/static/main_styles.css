@@ -1,19 +1,260 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: rgb(5, 95, 95);
+    color: white;
+    background-image: url('src/bg.jpg');
+    background-color: rgba(0, 0, 0, 0.738);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: darken;
+}
+
+
+/* The side navigation menu */
+
+.sidenav {
+    height: 100%;
+    /* 100% Full-height */
+    width: 0;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: rgb(59, 58, 58);
+    /* Black*/
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 60px;
+    /* Place content 60px from the top */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidenav */
+}
+
+
+/* The navigation menu links */
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: rgb(239, 243, 246);
+    display: block;
+    transition: 0.3s
+}
+
+
+/* When you mouse over the navigation links, change their color */
+
+.sidenav a:hover,
+.offcanvas a:focus {
+    color: rgb(135, 135, 234);
+}
+
+
+/* Position and style the close button (top right corner) */
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+    overflow: hidden;
+    width: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+
+/* Add a black background color to the top navigation */
+
+.topnav {
+    color: rgb(255, 251, 251);
+    background-color: rgb(59, 58, 58);
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+}
+
+
+/* Style the links inside the navigation bar */
+
+.topnav a {
+    float: left;
+    display: block;
+    color: rgb(254, 248, 248);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+/* Change the color of links on hover */
+
+.topnav a:hover {
+    background-color: rgb(59, 58, 58);
+    color: black;
+}
+
+
+/* Add a color to the active/current link */
+
+.topnav {
+    background-color: transparent;
+    color: rgb(59, 58, 58);
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+a svg {
+    transition: all .5s ease;
+    &:hover {
+        transform: rotate(180deg);
+    }
+}
+
+#ico {
+    display: none;
+}
+
+.menu {
+    background: rgb(59, 58, 58);
+    display: none;
+    padding: 5px;
+    width: 320px;
+    @include border-radius(5px);
+    transition: all 0.5s ease;
+    a {
+        display: block;
+        color: #fff;
+        text-align: center;
+        padding: 10px 2px;
+        margin: 3px 0;
+        text-decoration: none;
+        background: #444;
+        &:nth-child(1) {
+            margin-top: 0;
+            @include border-radius(3px 3px 0 0);
+        }
+        &:nth-child(5) {
+            margin-bottom: 0;
+            @include border-radius(0 0 3px 3px);
+        }
+        &:hover {
+            background: #555;
+        }
+    }
+}
+
+.posNav {
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+
+
+/*BODY STYLINGS*/
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    color: rgb(208, 209, 216);
+    text-shadow: 2px 2px 3px black;
+    font-size: 5rem;
+    padding: 2em;
+}
+
+.hero-text {
+    font-size: 1.5em;
+}
+
+.title-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-around;
+    margin: 3.5em 0 3.5em 0;
+}
+
+.hero-text {
+    font-size: 1.8rem;
 }
 
 .mapsDisplay {
     width: 100%;
-    height: 45vh;
+    height: 70vh;
 }
 
 .main-body {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+hr {
+    color: black;
+}
+
+.about-card {
+    font-size: 1.7rem;
+    padding: 3rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    background-color: rgba(0, 0, 0, 0.222);
+    box-shadow: 0px 1px 31px 6px rgba(188, 184, 184, 0.75);
+    -webkit-box-shadow: 0px 1px 31px 6px rgba(187, 183, 183, 0.75);
+    -moz-box-shadow: 0px 1px 31px 6px rgba(184, 178, 178, 0.75);
+}
+
+.row {
+    height: 100vh;
 }
 
 .contacts-icon {
     height: 5rem;
     width: 5rem;
     padding: 1.2rem;
+}
+
+#myemail {
+    color: rgb(168, 38, 38);
+}
+
+#myInsta {
+    color: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%)!important;
+}
+
+.footer-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+    padding: 2em;
 }

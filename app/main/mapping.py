@@ -44,51 +44,36 @@ def join_pandas_geopandas(pandas_,geopandas_shape,on_=None,how_='right'):
     
     
 #generating maps
-def generate_map(pandas_data,geopandas_shape,name_,column_lst,coordinates_lst,fields_,aliases_,lgnd_name,fill_clr="Blues"):
-    """Returns the map to display the visualization.
+def generate_map(geojson_data,column_,clr,name_,lgnd_name):
+    KEN=folium.Map(location=[0.0236,37.9062],zoom_start=6,tiles='Stamen Terrain')
+    cpleth=folium.Choropleth(geo_data=geojson_data,data=geojson_data,columns=column_,key_on=('feature.properties.objectid'),fill_color=(clr),fill_opacity=0.8,nan_fill_opacity=0.4,line_opacity=0.5,name=name_,show=True,overlay=True,legend_name=lgnd_name,highlight=True,nan_fill_color='black',reset=True).add_to(KEN)
     
-    parameters
-    pandas data and geopandas shape file
-    column_n: name of the column to join them with.
-    name_:name of the map to generate
-    column_lst: column data to include in the map
-    cordinates_lst: list of the coordinates(must be two items)
-    fields_ and aliases_ are entered as per folium.features.GeojsonTooltip
-    lgnd_name: takes the legend name
-    fill_clr: takes the color of the fill, can be list but set to RdYIGn by default.
-    """
-    if not (isinstance(coordinates_lst,list) and isinstance(fields_,list) and isinstance(aliases_,list)):
-        return "column_lst,fields_,aliases_, cordinates(list that must contain only two items of int or float types), i.e arguments 4th, 5th, 6th and 7th should be lists"
-    #pandas_transp=data_transpose(pandas_data)
-    gdf=join_pandas_geopandas(pandas_data,geopandas_shape)
-    coord=polygons(coordinates_lst)
+    #Hovering functionality
+    style_function = lambda x: {'fillColor': '#ffffff', 
+                                'color':'#000000', 
+                                'fillOpacity': 0.1, 
+                                'weight': 0.1}
+    highlight_function = lambda x: {'fillColor': '#000000', 
+                                    'color':'#000000', 
+                                    'fillOpacity': 0.50, 
+                                    'weight': 0.1}
     
-    tooltip=folium.features.GeoJsonTooltip(fields=fields_,aliases=aliases_,labels=True,stick=False)
-    map_=folium.Map(location=coord,tiles="Stamen Terrain",zoom_start=5)
-    cpleth=folium.Choropleth(gdf,data=gdf,key_on=('features.properties.County'),columns=column_lst,fill_color=fill_clr,legend_name=lgnd_name,name=name_)
+    folium.TileLayer('cartodbdark_matter',name="dark mode",control=True).add_to(KEN)
+    folium.TileLayer('cartodbpositron',name="light mode",control=True).add_to(KEN)
 
-    cpleth.geojson.add_child(tooltip)
-    cpleth.add_to(map_)
-    folium.LayerControl().add_to(map_)
+    # We add a layer controller. 
+    folium.LayerControl(collapsed=False).add_to(KEN)
     
-    return map_.save(name_+".html")
- 
- 
+    children = list(geojson_data.drop(['objectid', 'geometry'], axis=1).columns)
+    
+    cpleth.geojson.add_child(folium.features.GeoJsonTooltip(children, labels=True))
+    
+    return KEN.save('app/templates/maps_templates/'+name_+'.html')
 #=============simple tests=================   
 
-dir=os.path.dirname("/home/ado/Desktop/new_datacranchers/data_crunchers_knbs/app/data_processing/open_source_data_values/")
+dir=os.path.dirname("/home/ado/Desktop/new_datacranchers/data_crunchers_knbs/app/data_processing/open_source_data_values/folium_maps_data/")
 
-csv_files=['County.shp','2009_County_Population.csv','2013_health_staff_per_10000.csv','2018_2019_health_staff_per_10000.csv','2019_County_Population.csv','list_of_community_health_units.csv','list_of_hospitals_and_number_of_beds.csv','list_of_pharmacies.csv','number_of_hospital_beds.csv']
+#lst=['place_of_birth.geojson','core_healthworkforce.geojson','main_source_of_drinking_water.geojson']
+loc_=read_map(os.path.join(dir,'main_source_of_drinking_water.geojson'))
 
-def file_finder(dir,csv_files):
-    for i in csv_files:
-        loc=os.path.join(dir,i)
-        d=load_data(loc)
-        return d.head(5)
-    
-#print(file_finder(dir,csv_files))
-gdf=join_pandas_geopandas(os.path.join(dir,csv_files[4]),os.path.join(dir,csv_files[0]))
-#gdf=read_map(os.path.join(dir,csv_files[0]))
-print(gdf.head(5))
-
-print(generate_map(os.path.join(dir,csv_files[2]),os.path.join(dir,csv_files[0]),"Core Health",['County','Total'],[0.0236,37.9062],['County','Total'],['County','Total'],"County Population"))
+generate_map(loc_,('objectid','Unsafe'),'PuBu','Drinking_Water',('Households Main Source of Drinking Water.'))

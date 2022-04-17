@@ -1,0 +1,53 @@
+{%extends "InternetUsage.html"%}
+
+{%block navbar%}
+{{super()}}
+{%endblock%}
+
+{%block content%}
+<h1>Water and Sanitation</h1>
+<div class="container row">
+    <div class="col-md-6">
+        <div class="hero">
+            <p><span class="hero-text">Visualization of distribution of water and sanitization resources in Kenya based on their geographic locations using Geographic coodinate systems</span></p>
+            <div class="options">
+                <select class="btn btn-primary">
+                    <option>Select</option>
+                    <option>open hospitals</option>
+                    <option>Open during holidays(all holidays)</option>
+                    <option>Open throughout</option>
+                </select>
+            </div>
+        </div>
+        <div class="map-display-area">
+            <h4>Visualizations</h4>
+            <iframe src="" style="border:none" name="map" title="visualizations" height="250px"width="650px"class="mapsDisplay"></iframe>
+            <a href="maps_templates/Drinking_Water.html" target="map">county</a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="hero">
+            <p><span class="hero-text">Visualization of distribution of water and sanitization resources in Kenya based on their geographic locations using Geographic coodinate systems</span></p>
+            <div class="options">
+                <select class="btn btn-primary">
+                    <option>Select</option>
+                    <option>open hospitals</option>
+                    <option>Open during holidays(all holidays)</option>
+                    <option>Open throughout</option>
+                </select>
+            </div>
+        </div>
+        <div class="map-display-area">
+            <h4>Visualizations</h4>
+            <iframe src="" style="border:none" name="map-area2" title="visualizations" height="250px"width="650px"class="mapsDisplay"></iframe>
+            <a href="{{url_for("views.map1")}}" target="map-area2">county</a>
+        </div>
+    </div>
+</div>
+<div>
+</div>
+
+{%block footer%}
+
+{%endblock%}
+{%endblock%}
