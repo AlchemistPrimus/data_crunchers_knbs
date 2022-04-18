@@ -121,19 +121,11 @@ def hospital_operation_status(Hospitals_data):
     Hospitals_data['Facility type'] = Hospitals_data['Facility type'].apply(lambda x: x.lower())
     
     # Getting rid of hospitals that only offer specialised services
-    filt = ((Hospitals_data['Facility type'] == 'dental clinic') |
-        (Hospitals_data['Facility type'] == 'vct') |
-        (Hospitals_data['Facility type'] == 'laboratory') |
-        (Hospitals_data['Facility type'] == 'rehab. center - drug and substance abuse') |
-        (Hospitals_data['Facility type'] == 'ophthalmology') | 
-        (Hospitals_data['Facility type'] == 'dialysis center') |
-        (Hospitals_data['Facility type'] == 'radiology clinic') |
-        (Hospitals_data['Facility type'] == 'blood bank') |
-        (Hospitals_data['Facility type'] == 'regional blood transfusion centre') |
-        (Hospitals_data['Facility type'] == 'pharmacy') |
-        (Hospitals_data['Facility type'] == 'farewell home'))
-    
-    Hospitals_data = Hospitals_data.loc[~filt]
+    specialised_services = ['dental clinic', 'vct', 'laboratory', 'rehab. center - drug and substance abuse', 'ophthalmology',
+                       'dialysis center', 'radiology clinic', 'blood bank', 'regional blood transfusion centre', 'pharmacy',
+                       'farewell home']
+
+    Hospitals_data = Hospitals_data[~Hospitals_data['Facility type'].isin(specialised_services)]
     
     # Creating a dataframe with our variables of interest
     Hospital_status_df = Hospitals_data[['County', 'Owner type', 'Open_whole_day', 'Open_public_holidays', 
