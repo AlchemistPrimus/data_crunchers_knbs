@@ -25,15 +25,18 @@
             <iframe src="" style="border:none" name="map" title="visualizations" height="250px"width="650px"class="mapsDisplay"></iframe>
             <a href="maps_templates/Drinking_Water.html" target="map">county</a>
         </div>
+        <div class="comments">
+            <h3>Discussions</h3>
+        </div>
     </div>
     <div class="col-md-6">
         <div class="hero">
-            <p><span class="hero-text">Visualization of distribution of water and sanitization resources in Kenya based on their geographic locations using Geographic coodinate systems</span></p>
+            <p><span class="hero-text">Visualization of modes of human waste disposal in Kenya based on their geographic locations using Geographic coodinate systems</span></p>
             <div class="options">
                 <div class="dropdown">
                     <button class="dropbtn">Select Map</button>
                     <div class="dropdown-content">
-                        <a href="{{url_for('router.human_waste_disposal')}}" target="map-area2">Drinking Water</a>
+                        <a href="{{url_for('router.human_waste_disposal')}}" target="map-area2">Human Waste</a>
                     </div>
                 </div>
             </div>
@@ -43,10 +46,12 @@
             <iframe src="" style="border:none" name="map-area2" title="visualizations" height="250px"width="650px"class="mapsDisplay"></iframe>
             <a href="{{url_for("views.map1")}}" target="map-area2">county</a>
         </div>
+        <div class="comments">
+            <h3>Discussions</h3>
+        </div>
     </div>
 </div>
-<div>
-</div>
+
 
 {%block footer%}
 
