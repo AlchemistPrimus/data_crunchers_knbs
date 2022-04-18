@@ -18,12 +18,22 @@
                 <div class="hero">
                     <p><span class="hero-text">Visualization of distribution of health resources in Kenya based on their geographic locations using Geographic coodinate systems</span></p>
                     <div class="options">
-                        <select class="btn btn-primary">
-                            <option>Select</option>
-                            <option><a href="maps_templates/Healthworkforce.html" target="map-area">open hospitals</a></option>
-                            <option>Open during holidays(all holidays)</option>
-                            <option>Open throughout</option>
-                        </select>
+                        <div class="dropdown">
+                            <button class="dropbtn">Choose Map</button>
+                            <div class="dropdown-content">
+                                <a href="{{url_for('router.healthworkforce')}}" target="map-area">Healthworkforce</a>
+                                <a href="{{url_for('router.place_of_birth')}}" target="map-area">Place of BIrth</a>
+                                <a href="{{url_for('router.govt_open_whole_day')}}" target="map-area">Govt Hospitals Open Whole Day</a>
+                                <a href="{{url_for('router.govt_open_weekends')}}" target="map-area">Govt Hospitals Open on Weekends</a>
+                                <a href="{{url_for('router.govt_open_late_night')}}" target="map-area">Govt Hospitals Open Late night</a>
+                                <a href="{{url_for('router.govt_open_public')}}" target="map-area">Govt Hospitals open on public holidays</a>
+                                <hr style="color:black">
+                                <a href="{{url_for('router.nongovt_open_whole_day')}}" target="map-area">Non Govt Hospitals Open Whole Day</a>
+                                <a href="{{url_for('router.nongovt_open_late_night')}}" target="map-area">Non Govt Hospitals Open Late Night</a>
+                                <a href="{{url_for('router.nongovt_open_on_weekends')}}" target="map-area">Non Govt Hospitals Open on Weekends</a>
+                                <a href="{{url_for('router.nongovt_open_public_holidays')}}" target="map-area">Non Govt Hospitals Open on Public Holidays</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

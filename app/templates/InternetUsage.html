@@ -13,12 +13,14 @@
 <div class="hero">
     <p><span class="hero-text">Visualization of distribution of health resources in Kenya based on their geographic locations using Geographic coodinate systems</span></p>
     <div class="options">
-        <select class="btn btn-primary">
-            <option>Select</option>
-            <option>open hospitals</option>
-            <option>Open during holidays(all holidays)</option>
-            <option>Open throughout</option>
-        </select>
+        <div class="dropdown">
+            <button class="dropbtn">Select Map</button>
+            <div class="dropdown-content">
+                <a href="{{url_for('router.internet_users')}}" target="map-area">Internet Users</a>
+                <a href="{{url_for('router.fixed_internet')}}" target="map-area">People with fixed internet</a>
+                <a href="{{url_for('router.internet_through_mobile')}}" target="map-area">Internet through Mobile</a>
+            </div>
+        </div>
     </div>
     
 </div>

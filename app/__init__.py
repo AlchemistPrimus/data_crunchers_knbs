@@ -23,6 +23,8 @@ def create_app(config_name):
     moment.init_app(app)
 
     from app.main.views import views
+    from app.main.map_routes.routes import router
     app.register_blueprint(views)
+    app.register_blueprint(router)
 
     return app

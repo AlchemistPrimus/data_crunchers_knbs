@@ -11,12 +11,13 @@
         <div class="hero">
             <p><span class="hero-text">Visualization of distribution of water and sanitization resources in Kenya based on their geographic locations using Geographic coodinate systems</span></p>
             <div class="options">
-                <select class="btn btn-primary">
-                    <option>Select</option>
-                    <option>open hospitals</option>
-                    <option>Open during holidays(all holidays)</option>
-                    <option>Open throughout</option>
-                </select>
+                <div class="dropdown">
+                    <button class="dropbtn">Select Map</button>
+                    <div class="dropdown-content">
+                        <a href="{{url_for('router.drinking_water')}}" target="map">Drinking water</a>
+                        
+                    </div>
+                </div>
             </div>
         </div>
         <div class="map-display-area">
@@ -29,12 +30,12 @@
         <div class="hero">
             <p><span class="hero-text">Visualization of distribution of water and sanitization resources in Kenya based on their geographic locations using Geographic coodinate systems</span></p>
             <div class="options">
-                <select class="btn btn-primary">
-                    <option>Select</option>
-                    <option>open hospitals</option>
-                    <option>Open during holidays(all holidays)</option>
-                    <option>Open throughout</option>
-                </select>
+                <div class="dropdown">
+                    <button class="dropbtn">Select Map</button>
+                    <div class="dropdown-content">
+                        <a href="{{url_for('router.human_waste_disposal')}}" target="map-area2">Drinking Water</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="map-display-area">

@@ -6,7 +6,7 @@ sys.path.insert(0,"/home/ado/Desktop/new_datacranchers/data_crunchers_knbs/app/m
 
 views=Blueprint('views',__name__)
 
-@views.route('/baze',methods=['GET'])
+@views.route('/',methods=['GET'])
 def baze():
     
     return render_template('baze.html')
