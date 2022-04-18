@@ -1,0 +1,38 @@
+{%extends "index.html"%}
+
+{%block styles%}
+{{super()}}
+{%endblock%}
+
+{%block navbar%}
+{{super()}}
+{%endblock%}
+
+{%block content%}
+<h1>Internet Usage</h1>
+<div class="hero">
+    <p><span class="hero-text">Visualization of internet usage in Kenya based on their geographic locations using Geographic coordinate systems</span></p>
+    <div class="options">
+        <div class="dropdown">
+            <button class="dropbtn">Select Map</button>
+            <div class="dropdown-content">
+                <a href="{{url_for('router.internet_users')}}" target="map-area">Internet Users</a>
+                <a href="{{url_for('router.fixed_internet')}}" target="map-area">People with fixed internet</a>
+                <a href="{{url_for('router.internet_through_mobile')}}" target="map-area">Internet through Mobile</a>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="map-display-area">
+    <h4>Visualizations</h4>
+    <iframe src="" style="border:none" name="map-area" title="visualizations" height="250px"width="650px"class="mapsDisplay"></iframe>
+    <a href="{{url_for("views.map1")}}" target="map-area">county</a>
+</div>
+<div class="comments">
+    <h3>Discussions</h3>
+</div>
+{%block footer%}
+{{super()}}
+{%endblock%}
+{%endblock%}

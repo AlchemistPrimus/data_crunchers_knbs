@@ -4,24 +4,28 @@ import geopandas as gpd
 import fiona
 import matplotlib.pyplot as plt
 import folium
+import os
 from folium.plugins import StripePattern
 
+dir=os.path.dirname("/home/ado/Desktop/new_datacranchers/data_crunchers_knbs/app/data_processing/open_source_data_values/folium_maps_data/")
+
 # Loading the datasets
-core_healthworkforce = gpd.read_file("iaos_data/folium_maps_data/core_healthworkforce.geojson")
-govt_open_late_night = gpd.read_file("iaos_data/folium_maps_data/govt_open_late_night.geojson")
-govt_open_public_holidays = gpd.read_file("iaos_data/folium_maps_data/govt_open_public_holidays.geojson")
-govt_open_weekends = gpd.read_file("iaos_data/folium_maps_data/govt_open_weekends.geojson")
-govt_open_whole_day = gpd.read_file('iaos_data/folium_maps_data/govt_open_whole_day.geojson')
-nongovt_open_late_night = gpd.read_file("iaos_data/folium_maps_data/nongovt_open_late_night.geojson")
-nongovt_open_public_holidays = gpd.read_file("iaos_data/folium_maps_data/nongovt_open_public_holidays.geojson")
-nongovt_open_weekends = gpd.read_file("iaos_data/folium_maps_data/nongovt_open_weekends.geojson")
-nongovt_open_whole_day = gpd.read_file('iaos_data/folium_maps_data/nongovt_open_whole_day.geojson')
-homes_with_fixed_internet = gpd.read_file("iaos_data/folium_maps_data/homes_fixed_with_internet.geojson")
-human_waste_disposal = gpd.read_file("iaos_data/folium_maps_data/human_waste_disposal.geojson")
-internet_through_mobile = gpd.read_file("iaos_data/folium_maps_data/internet_through_mobile.geojson")
-internet_users = gpd.read_file("iaos_data/folium_maps_data/internet_users.geojson")
-main_source_of_drinking_water = gpd.read_file("iaos_data/folium_maps_data/main_source_of_drinking_water.geojson")
-place_of_birth = gpd.read_file("iaos_data/folium_maps_data/place_of_birth.geojson")
+core_healthworkforce = gpd.read_file(os.path.join(dir,"core_healthworkforce.geojson"))
+govt_open_late_night = gpd.read_file(os.path.join(dir,"govt_open_late_night.geojson"))
+govt_open_public_holidays = gpd.read_file(os.path.join(dir,"govt_open_public_holidays.geojson"))
+govt_open_weekends = gpd.read_file(os.path.join(dir,"govt_open_weekends.geojson"))
+govt_open_whole_day = gpd.read_file(os.path.join(dir,'govt_open_whole_day.geojson'))
+nongovt_open_late_night = gpd.read_file(os.path.join(dir,"nongovt_open_late_night.geojson"))
+nongovt_open_public_holidays = gpd.read_file(os.path.join(dir,"nongovt_open_public_holidays.geojson"))
+nongovt_open_weekends = gpd.read_file(os.path.join(dir,"nongovt_open_weekends.geojson"))
+nongovt_open_whole_day = gpd.read_file(os.path.join(dir,'nongovt_open_whole_day.geojson'))
+homes_with_fixed_internet = gpd.read_file(os.path.join(dir,"homes_fixed_with_internet.geojson"))
+human_waste_disposal = gpd.read_file(os.path.join(dir,"human_waste_disposal.geojson"))
+internet_through_mobile = gpd.read_file(os.path.join(dir,"internet_through_mobile.geojson"))
+internet_users = gpd.read_file(os.path.join(dir,"internet_users.geojson"))
+
+main_source_of_drinking_water = gpd.read_file(os.path.join(dir,"main_source_of_drinking_water.geojson"))
+place_of_birth = gpd.read_file(os.path.join(dir,"place_of_birth.geojson"))
 
 # Naming the dataframes
 
@@ -46,10 +50,10 @@ place_of_birth.name = 'place_of_birth'
 def mapping_func(geojson_data):
 
     #creating Kenya map object
-    KEN=folium.Map(location=[0.0236,37.9062], zoom_start=5)
+    KEN=folium.Map(location=[0.0236,37.9062], zoom_start=7)
     
     if geojson_data.name == 'core_healthworkforce':
-        clmn = ('objectid','% change')
+        clmn = ('objectid','\% change')
         col = 'Greys'
         nm = 'Healthworkforce'
         lgd_name = ('Core Healthworkforce')
@@ -162,4 +166,11 @@ def mapping_func(geojson_data):
     
     choropleth.geojson.add_child(folium.features.GeoJsonTooltip(children, labels=True))
 
-    return KEN
+    return KEN.save('app/templates/maps_templates/'+nm+'.html')
+
+#lst=['core_healthworkforce.geojson','govt_open_late_night.geojson','govt_open_public_holidays.geojson','govt_open_weekends.geojson','govt_open_whole_day.geojson','homes_fixed_with_internet.geojson','human_waste_disposal.geojson','internet_through_mobile.geojson','internet_users.geojson','main_source_of_drinking_water.geojson','nongovt_open_late_night.geojson','non_govt_open_public_holidays.geojson','nongovt_open_weekends.geojson','non_govt_open_whole_day.geojson','place_of_birth.geojson']
+
+loc=os.path.join(dir,'core_healthworkforce.geojson')
+
+file_=gpd.read_file(loc)  
+mapping_func(file_)

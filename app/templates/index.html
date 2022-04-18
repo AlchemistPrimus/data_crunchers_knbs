@@ -1,49 +1,58 @@
-{%extends "bootstrap/base.html"%}
+{%extends "baze.html"%}
 
 {%block styles%}
 {{super()}}
-<link rel="stylesheets" href="{{url_for('static',filename="styles.css")}}" type="text/css">
 {%endblock%}
 
+{%block navbar%}
+{{super()}}
+{%endblock%}
+
+
 {%block content%}
-<div class="row main-body">
-    <div class="col-md-2 topper"></div>
-    <div class="col-md-8 middle-content">
-        <div class="top-area">
-            <h1>Data-Crunchers</h1>
-            <p>Visualization of distribution of health resources in Kenya based on their geographic locations using Geographic coodinate systems</p>
-            <div class="options">
-                <select class="btn btn-primary">
-                    <option>Closed on Holidays</option>
-                    <option>Open during holidays(all holidays)</option>
-                    <option>Open throughout</option>
-                </select>
+<div class="main-body">
+        <div class=" topper"></div>
+        <div class="col-md-8 middle-content">
+            <div class="top-area">
+                <h1>Health Status</h1>
+                <div class="hero">
+                    <p><span class="hero-text">Visualization of distribution of health resources in Kenya based on their geographic locations using Geographic coodinate systems</span></p>
+                    <div class="options">
+                        <div class="dropdown">
+                            <button class="dropbtn">Choose Map</button>
+                            <div class="dropdown-content">
+                                <a href="{{url_for('router.healthworkforce')}}" target="map-area">Healthworkforce</a>
+                                <a href="{{url_for('router.place_of_birth')}}" target="map-area">Place of BIrth</a>
+                                <a href="{{url_for('router.govt_open_whole_day')}}" target="map-area">Govt Hospitals Open Whole Day</a>
+                                <a href="{{url_for('router.govt_open_weekends')}}" target="map-area">Govt Hospitals Open on Weekends</a>
+                                <a href="{{url_for('router.govt_open_late_night')}}" target="map-area">Govt Hospitals Open Late night</a>
+                                <a href="{{url_for('router.govt_open_public')}}" target="map-area">Govt Hospitals open on public holidays</a>
+                                <hr style="color:black">
+                                <a href="{{url_for('router.nongovt_open_whole_day')}}" target="map-area">Non Govt Hospitals Open Whole Day</a>
+                                <a href="{{url_for('router.nongovt_open_late_night')}}" target="map-area">Non Govt Hospitals Open Late Night</a>
+                                <a href="{{url_for('router.nongovt_open_on_weekends')}}" target="map-area">Non Govt Hospitals Open on Weekends</a>
+                                <a href="{{url_for('router.nongovt_open_public_holidays')}}" target="map-area">Non Govt Hospitals Open on Public Holidays</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="map-display-area">
+                <h4>Visualizations</h4>
+                <iframe src="" style="border:none" name="map-area" title="visualizations" height="250px"width="650px"class="mapsDisplay"></iframe>
+                
+            </div>
+            <div class="graphs">
+                
+            </div>
+            <div class="discussions">
+                <h3>Discussions</h3
             </div>
         </div>
-        <div class="map-display-area">
-            <h4>Visualizations</h4>
-            <iframe src="" style="border:none" name="map-area" title="visualizations" height="250px"width="650px"class="mapsDisplay"></iframe>
-            <a href="{{url_for("views.map_render")}}" target="map-area">county</a>
-        </div>
-        <div class="main-body">
-            <h4>About us</h4>
-            <p>Datacrunchers are the Africa statistics hackathon winners that aimed at promoting good data use for KNBS. Given dataset we were able to innovatively make something good out of it, that is visualizations that can be used to study distribution of resources in different counties in our country.</p>
-            <p>This can help our country in appropriate distribution of resources to tackle SDG, providing solutions through data collected by the government.</p>
-        </div>
+        <div class=" bottom"></div>
     </div>
-    <div class="col-md-2 bottom"></div>
 </div>
 {%block footer%}
-<div class="footer-area">
-    <p><b>Developer contacts</b></p>
-    <ul class="list list-unstyled">
-        <li>twitter</li>
-        <li>linkedin</li>
-        <li>email</li>
-        <li>instagram</li>
-    </ul>
-    <h5 class="txt-center">Data-Crunchers&copy;2022</h5>
-    
-</div>
+{{super()}}
 {%endblock%}
 {%endblock%}
