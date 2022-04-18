@@ -25,109 +25,14 @@ place_of_birth = gpd.read_file("iaos_data/folium_maps_data/place_of_birth.geojso
 
 # Naming the dataframes
 
-core_healthworkforce.name = 'core_healthworkforce'
-govt_open_late_night.name = 'govt_open_late_night'
-govt_open_public_holidays.name = 'govt_open_public_holidays'
-govt_open_weekends.name = 'govt_open_weekends'
-govt_open_whole_day.name = 'govt_open_whole_day'
-nongovt_open_late_night.name = 'nongovt_open_late_night'
-nongovt_open_public_holidays.name = 'nongovt_open_public_holidays'
-nongovt_open_weekends.name = 'nongovt_open_weekends'
-nongovt_open_whole_day.name = 'nongovt_open_whole_day'
-homes_with_fixed_internet.name = 'homes_with_fixed_internet'
-human_waste_disposal.name = 'human_waste_disposal'
-internet_through_mobile.name = 'internet_through_mobile'
-internet_users.name = 'internet_users'
-main_source_of_drinking_water.name = 'main_source_of_drinking_water'
-place_of_birth.name = 'place_of_birth'
-
-# The mapping function
-
-def mapping_func(geojson_data):
-
-    #creating Kenya map object
+def map_func(geojson_data, clmn, col, nm, lgd_name):
+    # Creating Kenya map object
     KEN=folium.Map(location=[0.0236,37.9062], zoom_start=5)
     
-    if geojson_data.name == 'core_healthworkforce':
-        clmn = ('objectid','% change')
-        col = 'Greys'
-        nm = 'Healthworkforce'
-        lgd_name = ('Core Healthworkforce')
-    elif geojson_data.name == 'govt_open_late_night':
-        clmn = ('objectid','No')
-        col = 'Purples'
-        nm = 'Govt_Open_Late_Night'
-        lgd_name = ('Government Hospitals Open Late Night')
-    elif geojson_data.name == 'govt_open_public_holidays':
-        clmn = ('objectid','No')
-        col = 'Blues'
-        nm = 'Govt_Open_Public_Holidays'
-        lgd_name = ('Government Hospitals Open on Public Holidays')
-    elif geojson_data.name == 'govt_open_weekends':
-        clmn = ('objectid','No')
-        col = 'Greens'
-        nm = 'Govt_Open_Weekends'
-        lgd_name = ('Government Hospitals Open on Weekends')
-    elif geojson_data.name == 'govt_open_whole_day':
-        clmn = ('objectid','No')
-        col = 'Oranges'
-        nm = 'Govt_Open_Whole_Day'
-        lgd_name = ('Government Hospitals Open Whole Day')
-    elif geojson_data.name == 'nongovt_open_late_night':
-        clmn = ('objectid','No')
-        col = 'Reds'
-        nm = 'Nongovt_Open_Late_Night'
-        lgd_name = ('Non-Governmental Hospitals Open Late Night')
-    elif geojson_data.name == 'nongovt_open_public_holidays':
-        clmn = ('objectid','No')
-        col = 'YlOrBr'
-        nm = 'Nongovt_Open_Public_Holidays'
-        lgd_name = ('Non-Governmental Hospitals Open on Public Holidays')
-    elif geojson_data.name == 'nongovt_open_weekends':
-        clmn = ('objectid','No')
-        col = 'YlOrRd'
-        nm = 'Nongovt_Open_Weekends'
-        lgd_name = ('Non-Governmental Hospitals Open on Weekends')
-    elif geojson_data.name == 'nongovt_open_whole_day':
-        clmn = ('objectid','No')
-        col = 'OrRd'
-        nm = 'Nongovt_Open_Whole_Day'
-        lgd_name = ('Non-Governmental Hospitals Open Whole Day')
-    elif geojson_data.name == 'homes_with_fixed_internet':
-        clmn = ('objectid','No')
-        col = 'PuRd'
-        nm = 'Fixed_Internet'
-        lgd_name = ('Households with Fixed Internet at Home')
-    elif geojson_data.name == 'human_waste_disposal':
-        clmn = ('objectid','Improper')
-        col = 'RdPu'
-        nm = 'Human_Waste_Disposal'
-        lgd_name = ('Households Modes of Human Waste Disposal')
-    elif geojson_data.name == 'internet_through_mobile':
-        clmn = ('objectid','No')
-        col = 'BuPu'
-        nm = 'Internet_Through_Mobile'
-        lgd_name = ('Households that Accessed Internet Through Mobile')
-    elif geojson_data.name == 'internet_users':
-        clmn = ('objectid','No')
-        col = 'GnBu'
-        nm = 'Internet_Users'
-        lgd_name = ('Persons that Accessed Internet in the Last Three Months')
-    elif geojson_data.name == 'main_source_of_drinking_water':
-        clmn = ('objectid','Unsafe')
-        col = 'PuBu'
-        nm = 'Drinking_Water'
-        lgd_name = ('Households Main Source of Drinking Water')
-    else:
-        clmn = ('objectid','Non Health Facility')
-        col = 'YlGnBu'
-        nm = 'Place_Of_Birth'
-        lgd_name = ('Women who gave Birth in a Non-Health Facility')
-        
     choropleth= folium.Choropleth(
         geo_data = geojson_data,
         data=geojson_data,
-        columns= clmn,
+        columns= ('objectid', clmn),
         key_on=('feature.properties.objectid'),
         fill_color=(col),
         fill_opacity=0.8,
@@ -163,3 +68,6 @@ def mapping_func(geojson_data):
     choropleth.geojson.add_child(folium.features.GeoJsonTooltip(children, labels=True))
 
     return KEN
+
+# Example of using the function
+map_func(place_of_birth, 'Non Health Facility', 'YlGnBu', 'Place_Of_Birth', 'Women who gave Birth in a Non-Health Facility (%)')    
